@@ -1,15 +1,32 @@
 import React, { useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import "./App.css";
-import template from "./assets/template-red.jpg"; // put your template image here
-import logo from "./assets/Adhuni Gold logo b.jpg"; // put your logo image here
+import posterColors from "./templates"; // template image here
+import logo from "./assets/Adhuni Gold logo b.jpg"; // logo image here
 
 function App() {
   const currentDate = new Date();
-const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}.${(currentDate.getMonth() + 1).toString().padStart(2, '0')}.${currentDate.getFullYear()}`;
+const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+const displayDate = (date) => {
+  const [year, month, day] = date.split('-');
+  return `${day}.${month}.${year}`;
+};
   const [date, setDate] = useState(formattedDate);
-  const [rate1, setRate1] = useState(0);
+  const [rate1, setRate1] = useState('0');
   const posterRef = useRef(null);
+
+  const [selectedPoster, setSelectedPoster] = useState(posterColors[4]);
+  const [loading, setLoading] = useState(false);
+
+  const handlePosterChange = (poster) => {
+    setLoading(true);
+    const img = new Image();
+    img.src = poster.src;
+    img.onload = () => {
+      setSelectedPoster(poster);
+      setLoading(false);
+    };
+  };
 
   const rate8 = rate1 * 8;
 
@@ -31,10 +48,14 @@ const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}.${(c
 
       {/* Form */}
       <div className="form">
+      <div className="form-header">
+        <h3>Enter Details</h3>
+        <br />
+        <div className="form-header-content">
         <label>
           Date:
           <input
-            type="text"
+            type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
@@ -42,34 +63,60 @@ const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}.${(c
         <label>
           1 Gram Rate:
           <input
-            type="number"
+            type="text"
             value={rate1}
             onChange={(e) => setRate1(Number(e.target.value))}
           />
         </label>
+        </div>
+      </div>
+
+      {/* Poster color options */}
+      <div className="poster-color-options">
+      <label>
+          Choose Poster Color:
+      <div className="color-options">
+        {posterColors.map((poster) => (
+          <div
+            key={poster.name}
+            className={`color-box ${
+              selectedPoster.name === poster.name ? "active" : ""
+            }`}
+            style={{ backgroundColor: poster.color }}
+            onClick={() => handlePosterChange(poster)}
+          ></div>
+        ))}
+      </div>
+      </label>
+      </div>
       </div>
 
       {/* Instructions */}
+      <h3 className="instruction-title">Instructions</h3>
       <p className="instructions">
-        Change the date and rate above, and Click the <em>"Download Poster"</em>  button to generate a poster and save it to
+        Select a poster color, enter the date and 1 gram rate, and click the <em>"Download Poster"</em>  button to generate a poster and save it to
         your device.
       </p>
 
       {/* Preview image (smaller) */}
       <div className="poster-wrapper">
         <div className="poster preview">
-          <img src={template} alt="template" className="bg" />
-          <div className="date-text">{date}</div>
-          <div className="rate1-text">₹ {rate1}</div>
-          <div className="rate8-text">₹ {rate8}</div>
+          {loading ? (
+          <div className="skeleton"></div>
+        ) : (
+          <img src={selectedPoster.src} alt={selectedPoster.name} />
+        )}
+          <div className="date-text" style={loading ? { opacity: 0 } : null}>{displayDate(date)}</div>
+          <div className="rate1-text" style={loading ? { opacity: 0 } : null}>₹ {rate1}</div>
+          <div className="rate8-text" style={loading ? { opacity: 0 } : null}>₹ {rate8}</div>
         </div>
       </div>
 
       {/* Full res for screen grab */}
       <div className="poster-wrapper">
         <div className="poster full" ref={posterRef}>
-          <img src={template} alt="template" className="bg" />
-          <div className="date-text">{date}</div>
+          <img src={selectedPoster.src} alt={selectedPoster.name} />
+          <div className="date-text">{displayDate(date)}</div>
           <div className="rate1-text">₹ {rate1}</div>
           <div className="rate8-text">₹ {rate8}</div>
         </div>
