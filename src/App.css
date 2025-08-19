@@ -343,6 +343,8 @@ button {
   transition: all 0.2s;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
 }
 
 button:hover {
@@ -357,6 +359,34 @@ button:active {
   transform: scale(0.97);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
+/* Spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spinner-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+.spinner--button {
+  margin-right: 8px;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
 
 .poster-color-options {
   display: flex;

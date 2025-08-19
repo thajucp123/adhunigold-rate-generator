@@ -30,15 +30,23 @@ const displayDate = (date) => {
 
   const rate8 = rate1 * 8;
 
-  const downloadImage = () => {
-    if (!posterRef.current) return;
-    html2canvas(posterRef.current, { scale: 2 }).then((canvas) => {
-      const link = document.createElement("a");
-      link.download = `Adhuni-gold-rate-${date}.png`;
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-    });
-  };
+const [downloadStatus, setDownloadStatus] = useState(false);
+
+//for downloading the image from html2canvas
+const downloadImage = () => {
+  if (!posterRef.current) return;
+  setDownloadStatus(true);
+  html2canvas(posterRef.current, { scale: 2 }).then((canvas) => {
+    const link = document.createElement("a");
+    link.download = `Adhuni-gold-rate-${date}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+    /*2 seconds delay to show the spinner*/
+    setTimeout(() => {
+      setDownloadStatus(false);
+    }, 2000);
+  });
+};
 
   return (
     <div className="App">
@@ -122,8 +130,18 @@ const displayDate = (date) => {
         </div>
       </div>
 
-      {/* Download */}
-      <button onClick={downloadImage}>Download Poster</button>
+      {/* Download button with loading indicator as :before */}
+      
+      <button onClick={downloadImage}>
+  {downloadStatus ? (
+                    <div className="spinner-container">
+                      <div className="spinner spinner--button" />
+                      <span>Downloading...</span>
+                    </div>
+                  ) : (
+                    <span>Download Poster</span>
+                  )}
+</button>
     </div>
   );
 }
