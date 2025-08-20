@@ -277,12 +277,28 @@ body {
   width: 18.75rem;
   aspect-ratio: 1321/2048;
   overflow: hidden;
-  border: 0.0625rem solid #ddd;
+  border: 2px solid rgba(255, 255, 255, 0.95);
   border-radius: 0.75rem;
-  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.15);
+  box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.55);
   position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.1s, box-shadow 0.1s;
+  transform: perspective(1000px) translate(-2px, -2px);
+  animation: hover-effect 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+@keyframes hover-effect {
+  0% {
+    transform: perspective(1000px) translate(-2px, -2px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1000px) translate(-2px, -2px) rotateY(360deg);
+  }
+}
+.poster.preview:hover {
+  box-shadow: 0 0.25rem 1.5rem rgba(237, 230, 23, 0.4);
+  animation: none; /* Stop the hover effect animation on hover */
+}
+
 
 
 

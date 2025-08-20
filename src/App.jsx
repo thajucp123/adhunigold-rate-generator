@@ -81,31 +81,6 @@ function App() {
     });
   };
 
-  // for hovering effects of preview image
-  const [transform, setTransform] = useState('');
-  const [boxShadow, setBoxShadow] = useState('');
-  const [border, setBorder] = useState('');
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (x - centerX) / 10;
-
-    setTransform(`perspective(1000px) translate(-2px, -2px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`);
-    setBoxShadow('10px 15px 20px rgba(0, 0, 0, 0.55)');
-    setBorder('2px solid rgba(255, 255, 255, 0.95)');
-  };
-
-  const handleMouseOut = () => {
-    setTransform('');
-    setBoxShadow('');
-    setBorder('');
-  };
-
   const [rateChange, setRateChange] = useState('0');
 
   return (
@@ -185,14 +160,6 @@ function App() {
         {/* Preview image (smaller) */}
         <div className="poster-wrapper">
           <div className="poster preview"
-            onMouseMove={handleMouseMove}
-            onMouseOut={handleMouseOut}
-            style={{
-              transform,
-              boxShadow,
-              border,
-              transition: 'transform 0.1s, box-shadow 0.1s',
-            }}
           >
             {/* Display skeleton if loading or if no poster is selected yet */}
             {loading || selectedPoster === null ? (
