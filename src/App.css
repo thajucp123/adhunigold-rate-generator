@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Festive&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
 /* Global layout */
 
 body {
@@ -234,6 +235,25 @@ body {
   outline: none;
   transform: scale(1.05);
   transition: all 0.2s;
+}
+
+.change-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  width: 100%;
+}
+.change-wrapper label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.change-wrapper input {
+  max-width: 5rem;
+  display: inline-block;
 }
 
 /* Poster container */

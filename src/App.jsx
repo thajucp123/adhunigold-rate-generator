@@ -71,7 +71,7 @@ function App() {
     setDownloadStatus(true);
     html2canvas(posterRef.current, { scale: 2 }).then((canvas) => {
       const link = document.createElement("a");
-      link.download = `Adhuni-gold-rate-${date}.png`;
+      link.download = `Adhuni-gold-rate-${displayDate(date)}.png`;
       link.href = canvas.toDataURL("image/png");
       link.click();
       /*2 seconds delay to show the spinner*/
@@ -106,6 +106,8 @@ function App() {
     setBorder('');
   };
 
+  const [rateChange, setRateChange] = useState('0');
+
   return (
     <div className="App">
       <div className="App-left">
@@ -133,9 +135,23 @@ function App() {
                   type="text"
                   value={rate1}
                   onChange={(e) => setRate1(Number(e.target.value))}
+                  maxlength="4"
                 />
               </label>
             </div>
+          </div>
+
+          {/* Input to enter change in rate from yesterday's rate*/}
+          <div className="change-wrapper">
+            <label>
+              Change in Rate:
+              <input
+                type="text"
+                value= {rateChange}
+                onChange= {(e) => setRateChange(Number(e.target.value))}
+                maxlength="3"
+              />
+            </label>
           </div>
 
           {/* Poster color options */}
@@ -186,8 +202,8 @@ function App() {
               <img src={selectedPoster.src} alt={selectedPoster.name} />
             )}
             <div className="date-text" style={loading ? { opacity: 0 } : null}>{displayDate(date)}</div>
-            <div className="rate1-text" style={loading ? { opacity: 0 } : null}>₹ {rate1}</div>
-            <div className="rate8-text" style={loading ? { opacity: 0 } : null}>₹ {rate8}</div>
+            <div className="rate1-text" style={loading ? { opacity: 0 } : null}><span>&#8377;</span> {rate1}</div>
+            <div className="rate8-text" style={loading ? { opacity: 0 } : null}><span>&#8377;</span> {rate8}</div>
           </div>
         </div>
 
@@ -197,8 +213,8 @@ function App() {
             {/* Added optional chaining (?) to prevent errors if selectedPoster is null initially */}
             <img src={selectedPoster?.src} alt={selectedPoster?.name} />
             <div className="date-text">{displayDate(date)}</div>
-            <div className="rate1-text">₹ {rate1}</div>
-            <div className="rate8-text">₹ {rate8}</div>
+            <div className="rate1-text"><span>&#8377;</span> {rate1}</div>
+            <div className="rate8-text"><span>&#8377;</span> {rate8}</div>
           </div>
         </div>
 
