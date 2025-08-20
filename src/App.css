@@ -518,16 +518,7 @@ button:active {
   .poster.preview {
     width: 15.625rem;
   }
-  .poster.full {
-    width: 18.75rem;
-    aspect-ratio: 1321 / 2048;
-  }
-  .date-text {
-    font-size: 1.5rem;
-  }
-  .rate1-text, .rate8-text {
-    font-size: 1.75rem;
-  }
+
   .poster.preview .date-text {
     font-size: 0.625rem;
   }
@@ -547,10 +538,10 @@ button:active {
   .poster.preview {
     width: 12.5rem;
   }
-  .date-text {
-    font-size: 1.25rem;
+  .poster.preview .date-text {
+    font-size: 0.425rem;
   }
-  .rate1-text, .rate8-text {
-    font-size: 1.5rem;
+  .poster.preview .rate1-text, .poster.preview .rate8-text  {
+    font-size: 0.475rem;
   }
 }
