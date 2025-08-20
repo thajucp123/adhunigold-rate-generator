@@ -1,5 +1,3 @@
-# readme
-
 # 🖼️ Adhuni Gold – Poster Generator
 
 A **React-based web application** that allows Adhuni Gold employees to quickly generate professional gold rate posters with customisable date & rates. Users can enter the date and gold rates. Select from multiple poster colour themes, preview the result, and download a high-resolution poster as an image.
@@ -25,6 +23,7 @@ This project was built for a local gold jewellery shop named **Adhuni Gold** to 
 - 🗓️ **Customisable Inputs**
     - Date selector (with default to today).
     - Input for 1 gram gold rate (8g value calculated automatically).
+    - Input for change in gold rate.
 - ⚡ **Preview with Skeleton Loader**
     
     Poster preview updates instantly with shimmer animation while templates load.
@@ -39,7 +38,7 @@ This project was built for a local gold jewellery shop named **Adhuni Gold** to 
     
 - 🖌️ **Branding Support**
     
-    Company logo placed neatly on the card (top-right corner).
+    Company logo placed neatly on the card (top-center).
     
 
 ---
@@ -120,7 +119,7 @@ adhuni-gold-poster/
 ## 🎯 Usage
 
 1. Select **poster colour** from the swatches.
-2. Enter the **date** and **1 gram rate**.
+2. Enter the **date**, **1 gram rate** and **change**.
 3. The **8 gram rate** updates automatically.
 4. Click **Download Poster** → Saves a **high-resolution PNG** file to your device.
 
