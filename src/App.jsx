@@ -48,8 +48,34 @@ const downloadImage = () => {
   });
 };
 
+// for hovering effects of preview image
+ const [transform, setTransform] = useState('');
+  const [boxShadow, setBoxShadow] = useState('');
+  const [border, setBorder] = useState('');
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (x - centerX) / 10;
+
+    setTransform(`perspective(1000px) translate(-2px, -2px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`);
+    setBoxShadow('10px 15px 20px rgba(0, 0, 0, 0.55)');
+    setBorder('2px solid rgba(255, 255, 255, 0.95)');
+  };
+
+  const handleMouseOut = () => {
+    setTransform('');
+    setBoxShadow('');
+    setBorder('');
+  };
+
   return (
     <div className="App">
+    <div className="App-left">
     <img src={logo} alt="Adhuni Gold" className="App-logo" />
       <h1>Adhuni Gold</h1>
       <h2>Gold Rate Poster Generator</h2>
@@ -105,10 +131,20 @@ const downloadImage = () => {
         Select a poster color, enter the date and 1 gram rate, and click the <em>"Download Poster"</em>  button to generate a poster and save it to
         your device.
       </p>
-
+        </div>
+    <div className="App-right">
       {/* Preview image (smaller) */}
       <div className="poster-wrapper">
-        <div className="poster preview">
+        <div className="poster preview"
+         onMouseMove={handleMouseMove}
+      onMouseOut={handleMouseOut}
+      style={{
+        transform,
+        boxShadow,
+        border,
+        transition: 'transform 0.1s, box-shadow 0.1s',
+      }}
+        >
           {loading ? (
           <div className="skeleton"></div>
         ) : (
@@ -142,6 +178,7 @@ const downloadImage = () => {
                     <span>Download Poster</span>
                   )}
 </button>
+    </div>
     </div>
   );
 }
