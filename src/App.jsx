@@ -16,9 +16,19 @@ const displayDate = (date) => {
   const posterRef = useRef(null);
 
   const [selectedPoster, setSelectedPoster] = useState(posterColors[4]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(true);
+
+  // Set the initial poster on first load
+  if (firstLoad) {
+    setFirstLoad(false);
+    handlePosterChange(selectedPoster);
+  }
 
   const handlePosterChange = (poster) => {
+    if (selectedPoster.name === poster.name) return; // Avoid reloading the same poster
+    if (loading) return; // Prevent changing poster while loading
+    setFirstLoad(false); // Set firstLoad to false after the first change
     setLoading(true);
     const img = new Image();
     img.src = poster.src;
@@ -145,7 +155,7 @@ const downloadImage = () => {
         transition: 'transform 0.1s, box-shadow 0.1s',
       }}
         >
-          {loading ? (
+          {loading || firstLoad ? (
           <div className="skeleton"></div>
         ) : (
           <img src={selectedPoster.src} alt={selectedPoster.name} />
