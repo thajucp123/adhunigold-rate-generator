@@ -16,7 +16,7 @@ const displayDate = (date) => {
   const posterRef = useRef(null);
 
   const [selectedPoster, setSelectedPoster] = useState(posterColors[4]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handlePosterChange = (poster) => {
     setLoading(true);
