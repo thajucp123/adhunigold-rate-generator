@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"; // Import useEffect
 import html2canvas from "html2canvas";
 import "./App.css";
-import posterColors from "./templates"; // template image here
-import logo from "./assets/Adhuni Gold logo b.jpg"; // logo image here
+import posterColors from "./templates"; // template images
+import logo from "./assets/Adhuni Gold logo b.jpg"; // logo image
+import inr from "./assets/rupee.svg"; // rupee icon
+import up from "./assets/up.svg";
+import down from "./assets/down.svg";
 
 function App() {
   const currentDate = new Date();
@@ -110,7 +113,7 @@ function App() {
                   type="text"
                   value={rate1}
                   onChange={(e) => setRate1(Number(e.target.value))}
-                  maxlength="4"
+                  maxLength="4"
                 />
               </label>
             </div>
@@ -122,9 +125,16 @@ function App() {
               Change in Rate:
               <input
                 type="text"
-                value= {rateChange}
-                onChange= {(e) => setRateChange(Number(e.target.value))}
-                maxlength="3"
+                value={rateChange}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value === '' || value === '-' || value === '+') {
+                    setRateChange(value);
+                  } else if (!isNaN(Number(value))) {
+                    setRateChange(Number(value));
+                  }
+                }}
+                maxLength="4"
               />
             </label>
           </div>
@@ -169,8 +179,17 @@ function App() {
               <img src={selectedPoster.src} alt={selectedPoster.name} />
             )}
             <div className="date-text" style={loading ? { opacity: 0 } : null}>{displayDate(date)}</div>
-            <div className="rate1-text" style={loading ? { opacity: 0 } : null}><span>&#8377;</span> {rate1}</div>
-            <div className="rate8-text" style={loading ? { opacity: 0 } : null}><span>&#8377;</span> {rate8}</div>
+            <div className="rate1-text" style={loading ? { opacity: 0 } : null}>
+            <img className="rupee-icon" src={inr} alt="Rupee Icon" /> {rate1}</div>
+            <div className="rate8-text" style={loading ? { opacity: 0 } : null}>
+            <img className="rupee-icon" src={inr} alt="Rupee Icon" /> {rate8}</div>
+            {(rateChange !== '0' && rateChange !== '') && 
+            <div className="change-in-rate-text" style={loading ? { opacity: 0 } : null}>
+              <div className="blurred-bg"></div>
+              {rateChange > 0 && <img src={up} alt="up" className="change-rate-icon" />}
+              {rateChange < 0 && <img src={down} alt="down" className="change-rate-icon" />}
+              {rateChange > 0 ? `+${rateChange}` : rateChange} /gram
+            </div>}
           </div>
         </div>
 
@@ -180,8 +199,17 @@ function App() {
             {/* Added optional chaining (?) to prevent errors if selectedPoster is null initially */}
             <img src={selectedPoster?.src} alt={selectedPoster?.name} />
             <div className="date-text">{displayDate(date)}</div>
-            <div className="rate1-text"><span>&#8377;</span> {rate1}</div>
-            <div className="rate8-text"><span>&#8377;</span> {rate8}</div>
+            <div className="rate1-text">
+            <img className="rupee-icon" src={inr} alt="Rupee Icon" /> {rate1}</div>
+            <div className="rate8-text">
+            <img className="rupee-icon" src={inr} alt="Rupee Icon" /> {rate8}</div>
+            {(rateChange !== '0' && rateChange !== '') && 
+            <div className="change-in-rate-text" style={loading ? { opacity: 0 } : null}>
+              <div className="blurred-bg"></div>
+              {rateChange > 0 && <img src={up} alt="up" className="change-rate-icon" />}
+              {rateChange < 0 && <img src={down} alt="down" className="change-rate-icon" />}
+              {rateChange > 0 ? `+${rateChange}` : rateChange} /gram
+            </div>}
           </div>
         </div>
 
