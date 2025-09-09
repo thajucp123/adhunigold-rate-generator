@@ -663,6 +663,13 @@ button:active {
   .poster.preview .rate1-text, .poster.preview .rate8-text {
     font-size: 0.75rem;
   }
+
+  .poster.preview .rupee-icon {
+  height: 0.400rem;
+  width: 0.400rem;
+  vertical-align: middle; /* Align icon with text */
+}
+
 }
 
 /* Small mobile devices (portrait) */
