@@ -113,7 +113,7 @@ function App() {
                   type="text"
                   value={rate1}
                   onChange={(e) => setRate1(Number(e.target.value))}
-                  maxLength="4"
+                  maxLength="5"
                 />
               </label>
             </div>
@@ -134,7 +134,7 @@ function App() {
                     setRateChange(Number(value));
                   }
                 }}
-                maxLength="4"
+                maxLength="3"
               />
             </label>
           </div>
