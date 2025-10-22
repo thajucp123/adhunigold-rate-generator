@@ -134,7 +134,7 @@ function App() {
                     setRateChange(Number(value));
                   }
                 }}
-                maxLength="3"
+                maxLength="4"
               />
             </label>
           </div>
