@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     // Only proceed if selectedPoster is truly null, ensuring this runs only on initial mount.
     if (selectedPoster === null) {
-      const defaultPoster = posterColors[4]; // Your intended default poster
+      const defaultPoster = posterColors[0]; // Your intended default poster
       setLoading(true); // Indicate loading has started
       const img = new Image();
       img.src = defaultPoster.src;
