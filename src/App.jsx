@@ -139,10 +139,10 @@ function App() {
             </label>
           </div>
 
-          {/* Poster color options */}
+          {/* Poster style options (previously color options) */}
           <div className="poster-color-options">
             <label>
-              Choose Poster Color:
+              Change Poster Style:
               <div className="color-options">
                 {posterColors.map((poster) => (
                   <div
@@ -162,7 +162,7 @@ function App() {
         {/* Instructions */}
         <h3 className="instruction-title">Instructions</h3>
         <p className="instructions">
-          Select a poster color, enter the date and 1 gram rate, and click the <em>"Download Poster"</em>  button to generate a poster and save it to
+          Select a poster style, enter the date and 1 gram rate, and click the <em>"Download Poster"</em>  button to generate a poster and save it to
           your device.
         </p>
       </div>
@@ -180,15 +180,17 @@ function App() {
             )}
             <div className="date-text" style={loading ? { opacity: 0 } : null}>{displayDate(date)}</div>
             <div className="rate1-text" style={loading ? { opacity: 0 } : null}>
-            <img className="rupee-icon" src={inr} alt="Rupee Icon" /> {rate1}</div>
+            <img className="rupee-icon" src={inr} alt="Rupee Icon" />{rate1}</div>
             <div className="rate8-text" style={loading ? { opacity: 0 } : null}>
-            <img className="rupee-icon" src={inr} alt="Rupee Icon" /> {rate8}</div>
+            <img className="rupee-icon" src={inr} alt="Rupee Icon" />{rate8}</div>
             {(rateChange !== '0' && rateChange !== '') && 
             <div className="change-in-rate-text" style={loading ? { opacity: 0 } : null}>
-              <div className="blurred-bg"></div>
+              {/*
+              <div className="blurred-bg"></div> (for adding a golden color bg to text)
+              */} 
               {rateChange > 0 && <img src={up} alt="up" className="change-rate-icon" />}
               {rateChange < 0 && <img src={down} alt="down" className="change-rate-icon" />}
-              {rateChange > 0 ? `+${rateChange}` : rateChange} /gram
+              {rateChange > 0 ? `+${rateChange}` : rateChange}
             </div>}
           </div>
         </div>
@@ -200,15 +202,17 @@ function App() {
             <img src={selectedPoster?.src} alt={selectedPoster?.name} />
             <div className="date-text">{displayDate(date)}</div>
             <div className="rate1-text">
-            <img className="rupee-icon" src={inr} alt="Rupee Icon" /> {rate1}</div>
+            <img className="rupee-icon" src={inr} alt="Rupee Icon" />{rate1}</div>
             <div className="rate8-text">
-            <img className="rupee-icon" src={inr} alt="Rupee Icon" /> {rate8}</div>
+            <img className="rupee-icon" src={inr} alt="Rupee Icon" />{rate8}</div>
             {(rateChange !== '0' && rateChange !== '') && 
             <div className="change-in-rate-text" style={loading ? { opacity: 0 } : null}>
-              <div className="blurred-bg"></div>
+              {/*
+              <div className="blurred-bg"></div> (for adding a golden color bg to text)
+              */} 
               {rateChange > 0 && <img src={up} alt="up" className="change-rate-icon" />}
               {rateChange < 0 && <img src={down} alt="down" className="change-rate-icon" />}
-              {rateChange > 0 ? `+${rateChange}` : rateChange} /gram
+              {rateChange > 0 ? `+${rateChange}` : rateChange}
             </div>}
           </div>
         </div>

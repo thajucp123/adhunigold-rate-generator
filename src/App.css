@@ -354,13 +354,13 @@ body {
 /* Date styling */
 .date-text {
   position: absolute;
-  left: 48%;
-  top: 62.5%;
+  left: 49.75%;
+  top: 20.75%;
   transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 0.0625rem;
-  color: #fff89f;
+  color: #5e4357;
   text-shadow: none;
 }
 
@@ -373,11 +373,11 @@ body {
 .rate1-text,
 .rate8-text {
   position: absolute;
-  top: 69.25%;
+  top: 28.25%;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-weight: bold;
-  color: #fff89f;
+  color: #5e4357;
   text-shadow: none;
   letter-spacing: 0.03125rem;
   display: inline-block;
@@ -386,25 +386,37 @@ body {
 .poster.preview .rate1-text,
 .poster.preview .rate8-text {
   font-size: 0.825rem;
-  text-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.6);
+  /*text-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.6);*/
 }
 
 .rate1-text {
-  left: 34%;
+  left: 35%;
 }
 
 .rate8-text {
-  left: 74%;
+  left: 74.65%;
+}
+
+.poster.full .rate1-text,
+.poster.full .rate8-text {
+  top: 27.75%;
+}
+
+.poster.full .rate1-text {
+  left: 37%;
+}
+
+.poster.full .rate8-text {
+  left: 76.25%;
 }
 
 .change-in-rate-text {
   position: absolute;
-  top: 77%;
-  left: 48%;
+  top: 31.75%;
+  left: 40.75%;
   transform: translate(-50%, -50%);
   background:none;
-  color: white;
-  font-weight: bold;
+  color: #5e4357;
   text-shadow: none;
   letter-spacing: 0.03125rem;
   border-radius: 0.25rem;
@@ -435,12 +447,14 @@ body {
 
 .change-rate-icon {
   margin-right: 0.25rem;
+  text-shadow: none;
+  box-shadow: none;
 }
 
 .poster.preview .change-in-rate-text {
   font-size: 0.65rem;
-  font-weight: 400;
-  text-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+  /*text-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.9);*/
   padding: 0.1rem 0.3rem;
   border-radius: 0.15rem;
 }
@@ -452,7 +466,7 @@ body {
 
 .poster.full .change-in-rate-text {
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 600;
   padding: 0.2rem 0.6rem;
   border-radius: 0.3rem;
 }
@@ -471,7 +485,7 @@ body {
   width: 0.700rem;
   vertical-align: middle; /* Align icon with text */
   margin: 0;
-  margin-left: 0.580rem;
+  margin-left: 0.590rem;
   padding: 0;
 }
 
@@ -480,7 +494,7 @@ body {
   width: 1.650rem;
   vertical-align: middle; /* Align icon with text */
   margin: 0;
-  margin-left: 0.080rem;
+  margin-left: 0.095rem;
   padding: 0;
 }
 
