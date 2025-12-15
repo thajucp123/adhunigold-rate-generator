@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "src": "/api/gold-rate",
+      "dest": "/api/gold-rate-server.js"
+    }
+  ]
+}

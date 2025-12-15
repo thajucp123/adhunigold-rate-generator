@@ -46,7 +46,32 @@ function App() {
         // You might want to set a fallback image here if the default fails
       };
     }
+
+    // Fetch gold rate from backend API on initial load
+    fetchGoldRate();
   }, []); // Empty dependency array ensures this effect runs only once on component mount
+
+  // To scrape gold rate from external site via backend API (api is in the 'api' folder)
+const fetchGoldRate = async () => {
+    try {
+        // Use the URL of your Node.js proxy
+        const response = await fetch('/api/gold-rate'); 
+        const data = await response.json();
+
+        if (data.success) {
+            // Use data.rate to update your state and generate the poster
+            //console.log("Fetched Gold Rate:", data.rate);
+            setRate1(data.rate);
+        } else {
+            console.error(data.message);
+            // Fallback: Prompt user for manual entry
+        }
+    } catch (error) {
+        console.error('Error connecting to backend API:', error);
+        // Fallback
+    }
+};
+
 
   // This function is called when a user selects a new poster color.
   const handlePosterChange = (poster) => {
